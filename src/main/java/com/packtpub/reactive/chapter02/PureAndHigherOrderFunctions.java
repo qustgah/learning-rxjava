@@ -1,9 +1,9 @@
 package com.packtpub.reactive.chapter02;
 
+import com.packtpub.reactive.common.Program;
+
 import java.util.function.Function;
 import java.util.function.Predicate;
-
-import com.packtpub.reactive.common.Program;
 
 /**
  * Demonstrates pure and higher order functions.
@@ -25,7 +25,12 @@ public class PureAndHigherOrderFunctions implements Program {
 	@Override
 	public void run() {
 		// A pure function - no side effects
-		Predicate<Integer> even = (number) -> number % 2 == 0;
+		Predicate<Integer> even = new Predicate<Integer>() {
+			@Override
+			public boolean test(Integer number) {
+				return number % 2 == 0;
+			}
+		};
 
 		// Not a pure function - with a side effect - prints something and then returns.
 		Predicate<Integer> impureEven = (number) -> {

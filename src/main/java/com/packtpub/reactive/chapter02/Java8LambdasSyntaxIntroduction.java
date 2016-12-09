@@ -1,13 +1,17 @@
 package com.packtpub.reactive.chapter02;
 
+import com.packtpub.reactive.common.Program;
+
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
-
-import com.packtpub.reactive.common.Program;
 
 /**
  * Some of examples of using lambdas.
@@ -77,7 +81,12 @@ public class Java8LambdasSyntaxIntroduction implements Program {
 		print.andThen(print).accept("Here we go!"); // 2x Here we go!
 
 		// Defining a new lambda that turns a value to string and concatenates '!' to it.
-		Function<Integer, String> map = (value) -> (value + "!");
+		Function<Integer, String> map = new Function<Integer, String>() {
+			@Override
+			public String apply(Integer value) {
+				return (value + "!");
+			}
+		};
 		print.accept(map.apply(5)); // 5!
 
 		// Another map lambda
@@ -99,7 +108,28 @@ public class Java8LambdasSyntaxIntroduction implements Program {
 			return "The square of " + v + " is " + (v * v) + "!";
 		});
 		act(lambdaMapped, v -> System.out.println(v));
+		testTime();
 	}
+
+	void testTime(){
+		/*localDate*/
+		//LocalDate
+		LocalDate localDate = LocalDate.now(); //获取本地日期
+		localDate = LocalDate.ofYearDay(2014, 200); // 获得 2014 年的第 200 天
+		System.out.println(localDate.toString());//输出：2014-07-19
+		localDate = LocalDate.of(2014, Month.SEPTEMBER, 10); //2014 年 9 月 10 日
+		System.out.println(localDate.toString());//输出：2014-09-10
+//LocalTime
+		LocalTime localTime = LocalTime.now(); //获取当前时间
+		System.out.println(localTime.toString());//输出当前时间
+		localTime = LocalTime.of(10, 20, 50);//获得 10:20:50 的时间点
+		System.out.println(localTime.toString());//输出: 10:20:50
+//Clock 时钟
+		Clock clock = Clock.systemDefaultZone();//获取系统默认时区 (当前瞬时时间 )
+		long millis = clock.millis();//
+	}
+
+
 	
 	public static void main(String[] args) {
 		new Java8LambdasSyntaxIntroduction().run();

@@ -1,9 +1,7 @@
 package com.packtpub.reactive.chapter01;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import com.packtpub.reactive.common.CreateObservable;
+import com.packtpub.reactive.common.Program;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
@@ -12,8 +10,9 @@ import rx.functions.Func2;
 import rx.observables.ConnectableObservable;
 import rx.schedulers.Schedulers;
 
-import com.packtpub.reactive.common.CreateObservable;
-import com.packtpub.reactive.common.Program;
+import java.util.concurrent.CountDownLatch;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A demonstration of how to implement a sum that updates automatically when any of its collectors changes.
@@ -142,4 +141,13 @@ public class ReactiveSumV1 implements Program {
 		
 		new ReactiveSumV1().run();
 	}
+
+	public void testLambad(){
+		new Thread(() -> System.out.print(""));
+	}
+
+
+
+
+
 }
