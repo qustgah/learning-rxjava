@@ -1,10 +1,9 @@
 package com.packtpub.reactive.chapter04;
 
-import java.util.Arrays;
-
+import com.packtpub.reactive.common.Program;
 import rx.Observable;
 
-import com.packtpub.reactive.common.Program;
+import java.util.Arrays;
 
 import static com.packtpub.reactive.common.Helpers.subscribePrint;
 

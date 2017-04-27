@@ -1,16 +1,15 @@
 package com.packtpub.reactive.chapter06;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
-
+import com.packtpub.reactive.common.Program;
 import rx.Scheduler;
 import rx.Scheduler.Worker;
 import rx.functions.Action0;
 import rx.schedulers.Schedulers;
 
-import com.packtpub.reactive.common.Program;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A collection of examples of using the different {@link Scheduler}s.

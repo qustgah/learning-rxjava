@@ -79,10 +79,8 @@ public class ReactiveSumV1 implements Program {
 	 * <varName> = <value> or <varName> : <value>.
 	 * It emits the <value>.
 	 */
-	public static Observable<Double> varStream(final String varName,
-			Observable<String> input) {
-		final Pattern pattern = Pattern.compile("^\\s*" + varName
-				+ "\\s*[:|=]\\s*(-?\\d+\\.?\\d*)$");
+	public static Observable<Double> varStream(final String varName, Observable<String> input) {
+		final Pattern pattern = Pattern.compile("^\\s*" + varName + "\\s*[:|=]\\s*(-?\\d+\\.?\\d*)$");
 
 		return input.map(new Func1<String, Matcher>() {
 			public Matcher call(String str) {
@@ -141,13 +139,4 @@ public class ReactiveSumV1 implements Program {
 		
 		new ReactiveSumV1().run();
 	}
-
-	public void testLambad(){
-		new Thread(() -> System.out.print(""));
-	}
-
-
-
-
-
 }

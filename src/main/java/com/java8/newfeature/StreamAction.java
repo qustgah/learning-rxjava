@@ -10,7 +10,7 @@ import java.util.stream.Stream;
  * Java 8 引入了流式操作（Stream），通过该操作可以实现对集合（Collection）的并行处理和函数式操作。根据操作返回的结果不同，流式操作分为中间操作和最终操作两种。
  * 最终操作返回一特定类型的结果，而中间操作返回流本身，这样就可以将多个操作依次串联起来。根据流的并发性，流又可以分为串行和并行两种。流式操作实现了集合的过滤、排序、映射等功能。
  *
- * Stream 和 Collection 集合的区别：Collection 是一种静态的内存数据结构，而 Stream 是有关计算的。中前者是主要面向内存，存储在内存，后者主要是面向 CPU，通过 CPU 实现计算。
+ * Stream 和 Collection 集合的区别：Collection 是一种静态的内存数据结构，而 Stream 是有关计算的。前者是主要面向内存，存储在内存，后者主要是面向 CPU，通过 CPU 实现计算。
  *
  * Created by Administrator on 2016/12/9.
  */

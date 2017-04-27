@@ -63,8 +63,7 @@ public class PureAndHigherOrderFunctions implements Program {
 	/**
 	 * A higher order function - sums the results of two other functions, passed to it as parameters.
 	 */
-	public static <T, R> int highSum(Function<T, Integer> f1,
-			Function<R, Integer> f2, T data1, R data2) {
+	public static <T, R> int highSum(Function<T, Integer> f1, Function<R, Integer> f2, T data1, R data2) {
 		return f1.apply(data1) + f2.apply(data2);
 	}
 

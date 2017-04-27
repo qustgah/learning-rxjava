@@ -1,14 +1,13 @@
 package com.packtpub.reactive.chapter03;
 
-import static com.packtpub.reactive.common.Helpers.subscribePrint;
-
-import java.util.concurrent.TimeUnit;
-
+import com.packtpub.reactive.common.Program;
 import rx.Observable;
 import rx.Subscription;
 import rx.observables.ConnectableObservable;
 
-import com.packtpub.reactive.common.Program;
+import java.util.concurrent.TimeUnit;
+
+import static com.packtpub.reactive.common.Helpers.subscribePrint;
 
 /**
  * Demonstrates how to create and use ConnectableObservables.

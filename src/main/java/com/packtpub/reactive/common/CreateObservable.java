@@ -1,32 +1,11 @@
 package com.packtpub.reactive.common;
 
-import static com.packtpub.reactive.common.checked.Uncheck.unchecked;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.nio.file.DirectoryIteratorException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.attribute.FileTime;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
 import org.apache.http.impl.nio.client.HttpAsyncClients;
 import org.apache.http.nio.client.HttpAsyncClient;
-
 import rx.Observable;
 import rx.Scheduler;
 import rx.Scheduler.Worker;
@@ -41,8 +20,14 @@ import rx.observables.ConnectableObservable;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.Subscriptions;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import java.io.*;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
+import static com.packtpub.reactive.common.checked.Uncheck.unchecked;
 
 /**
  * Contains a set of methods for creating custom {@link Observable}s.
@@ -100,27 +85,30 @@ public class CreateObservable {
 	}
 
 	public static ConnectableObservable<String> from(final BufferedReader reader) {
-		return Observable.create((Subscriber<? super String> subscriber) -> {
-			try {
-				String line;
+		return Observable.create(new Observable.OnSubscribe<String>() {
+			@Override
+			public void call(Subscriber<? super String> subscriber) {
+				try {
+					String line;
 
-				if (subscriber.isUnsubscribed()) {
-					return;
-				}
-
-				while (!subscriber.isUnsubscribed() && (line = reader.readLine()) != null) {
-					if (line.equals("exit")) {
-						break;
+					if (subscriber.isUnsubscribed()) {
+						return;
 					}
 
-					subscriber.onNext(line);
-				}
-			} catch (IOException e) {
-				subscriber.onError(e);
-			}
+					while (!subscriber.isUnsubscribed() && (line = reader.readLine()) != null) {
+						if (line.equals("exit")) {
+							break;
+						}
 
-			if (!subscriber.isUnsubscribed()) {
-				subscriber.onCompleted();
+						subscriber.onNext(line);
+					}
+				} catch (IOException e) {
+					subscriber.onError(e);
+				}
+
+				if (!subscriber.isUnsubscribed()) {
+					subscriber.onCompleted();
+				}
 			}
 		}).publish();
 	}

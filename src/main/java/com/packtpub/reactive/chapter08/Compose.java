@@ -1,15 +1,14 @@
 package com.packtpub.reactive.chapter08;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import rx.Observable;
-import rx.Observable.Transformer;
-
 import com.packtpub.reactive.chapter08.Lift.Indexed;
 import com.packtpub.reactive.common.CreateObservable;
 import com.packtpub.reactive.common.Helpers;
 import com.packtpub.reactive.common.Program;
+import rx.Observable;
+import rx.Observable.Transformer;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Example of implementing a {@link Transformer} and passing it to {@link Observable#compose}.

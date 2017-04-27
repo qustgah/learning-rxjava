@@ -1,15 +1,14 @@
 package com.packtpub.reactive.chapter03;
 
-import static com.packtpub.reactive.common.Helpers.subscribePrint;
-
-import java.util.concurrent.TimeUnit;
-
+import com.packtpub.reactive.common.Program;
 import rx.Observable;
 import rx.Subscription;
 import rx.subjects.PublishSubject;
 import rx.subjects.Subject;
 
-import com.packtpub.reactive.common.Program;
+import java.util.concurrent.TimeUnit;
+
+import static com.packtpub.reactive.common.Helpers.subscribePrint;
 
 /**
  * Demonstration of using Subjects and what we could do with them.
